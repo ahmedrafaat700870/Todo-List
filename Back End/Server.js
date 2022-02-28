@@ -94,24 +94,36 @@ app.get("/allUsers", (req, res) => {
     err ? res.status(404).json(err) : res.status(201).json(UserObj)
   );
 });
-app.post("/NewUser", (req, res) => {
+app.post("/Regester", (req, res) => {
   const NewUser = req.body;
   User.create(NewUser, (err, NewUserObj) => {
-    err ? res.status(404).json(err) : res.status(201).json(NewUserObj);
+    if (err) {
+      res.json({ Message: "The Emnail you Entered is Used Before" });
+    } else {
+      res
+        .status(201)
+        .json({ Message: "Successe Create new User", obj: NewUserObj });
+    }
   });
 });
 // check user
-app.post("/checkUserData", (req, res) => {
-  const { email, userName, password } = req.body;
-  const Filter = { email: email, userName: userName, password: password };
+app.post("/logIn", (req, res) => {
+  const { email, password } = req.body;
+  const Filter = { email: email };
   User.find(Filter, (err, UserDataObj) => {
     if (err) {
       res.status(404).json(err);
     } else {
-      if (UserDataObj[0]._id) {
-        res.status(201).json("true");
+      if (UserDataObj.length === 1) {
+        if (UserDataObj[0].password === req.body.password) {
+          res.status(201).json({ Message: "successe Long in" });
+        } else {
+          res
+            .status(404)
+            .json({ Message: "the password you Entered not true " });
+        }
       } else {
-        res.status(201).json("flase");
+        res.status(404).json({ Message: "the email you Entered not founded " });
       }
     }
   });
