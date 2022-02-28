@@ -1,0 +1,28 @@
+.Todo {
+    width: 100%;
+    margin: 20px ;
+    display: flex;
+    justify-content: space-around;
+}
+.Todo p{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Todo span {
+    border: 1px solid #333;
+    padding: 4px 8px;
+    transition: .7s;
+    -webkit-transition: .7s;
+    -moz-transition: .7s;
+    -ms-transition: .7s;
+    -o-transition: .7s;
+    color: red;
+    cursor: pointer;
+}
+.Todo span:hover {
+    background-color: red;
+    border: none;
+    color: white;
+}
