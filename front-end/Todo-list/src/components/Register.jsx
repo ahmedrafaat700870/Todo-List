@@ -15,26 +15,29 @@ export default function Register() {
       .catch((err) => console.log(err));
   };
   return (
-    <form className="Register">
-      <input
-        type="text"
-        id="name"
-        placeholder="Enter you name"
-        onChange={(e) => setname(e.target.value)}
-      />
-      <input
-        type="text"
-        id="email"
-        placeholder="Enter your email"
-        onChange={(e) => setemail(e.target.value)}
-      />
-      <input
-        type="passowrd"
-        id="Passowrd"
-        placeholder="Enter your Password"
-        onChange={(e) => setpassword(e.target.value)}
-      />
-      <input type="submit" onClick={NewRegistertion} />
-    </form>
+    <div className="Register">
+      <h1>Register</h1>
+      <form>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter you name"
+          onChange={(e) => setname(e.target.value)}
+        />
+        <input
+          type="text"
+          id="email"
+          placeholder="Enter your email"
+          onChange={(e) => setemail(e.target.value)}
+        />
+        <input
+          type="passowrd"
+          id="Passowrd"
+          placeholder="Enter your Password"
+          onChange={(e) => setpassword(e.target.value)}
+        />
+        <input type="submit" onClick={NewRegistertion} />
+      </form>
+    </div>
   );
 }

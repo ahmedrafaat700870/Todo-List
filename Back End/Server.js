@@ -112,18 +112,18 @@ app.post("/logIn", (req, res) => {
   const Filter = { email: email };
   User.find(Filter, (err, UserDataObj) => {
     if (err) {
-      res.status(404).json(err);
+      res.status(200).json(err);
     } else {
       if (UserDataObj.length === 1) {
         if (UserDataObj[0].password === req.body.password) {
           res.status(201).json({ Message: "successe Long in" });
         } else {
           res
-            .status(404)
+            .status(200)
             .json({ Message: "the password you Entered not true " });
         }
       } else {
-        res.status(404).json({ Message: "the email you Entered not founded " });
+        res.status(200).json({ Message: "the email you Entered not founded " });
       }
     }
   });

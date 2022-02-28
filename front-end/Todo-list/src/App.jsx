@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { Routes, Route, Link } from "react-router-dom";
 import "./style/main.css";
 
 import Todo from "./components/Todo";
 import Newtask from "./components/Newtask";
 import Delete from "./components/Delete";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 export default function App() {
   const [Data, setData] = useState([]);
@@ -16,8 +18,8 @@ export default function App() {
     axios
       .get(`http://localhost:5000/all`)
       .then((response) => {
-        if (response.data == '') {
-          console.log('done')
+        if (response.data == "") {
+          console.log("done");
         } else {
           setData(response.data);
         }
@@ -99,15 +101,29 @@ export default function App() {
   });
   return (
     <div className="App">
-      <Newtask addfunction={createNewTodo} />
-      <Delete
-        DeleteAllFunctions={DeleteAll}
-        DeleteFinshedFunction={DeleteFinshed}
-        getFinshedFunction={getFinshedTasks}
-        getAllFunction={GetTasks}
-        NotFinshedFunction={getNotFinshed}
-      />
-      {todo}
+      <Link to="Register">Regester</Link> | 
+      <Link to="logIn">logIn</Link> | 
+      <Link to="/">Home</Link>
+      <Routes>
+        <Route path="/Register" element={<Register />} />
+        <Route path="/logIn" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <div className="Home">
+              <Newtask addfunction={createNewTodo} />
+              <Delete
+                DeleteAllFunctions={DeleteAll}
+                DeleteFinshedFunction={DeleteFinshed}
+                getFinshedFunction={getFinshedTasks}
+                getAllFunction={GetTasks}
+                NotFinshedFunction={getNotFinshed}
+              />
+              {todo}
+            </div>
+          }
+        />
+      </Routes>
     </div>
   );
 }
